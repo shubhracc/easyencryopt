@@ -1,16 +1,33 @@
+"""This encryption program gives the user four options. 
+
+Option 1 is for encryption using a plain text and a key. 
+Option 2 is for decyption using a cipher text and a key 
+Option 3 is for generating a key with a specified length 
+Option 4 is for quitting the program.
+"""
+
+__author__ = "Shubhra Chowdhury, Ayaan Adrito"
+
 import random
+ALPHABET = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
 
-def input_validifyer() -> int:
-    """Validifies the input by first making sure it's a number and then checks
-    if it is between 1 and 4 inclusive."""
-
-    validity = False
+def print_menu():
+    "Print the program's menu options ranging from 1-4."
 
     print("""Please choose from one of the following menu options:
 1. Encrypt plaintext.
 2. Decrypt ciphertext.
 3. Generate key.
 4. Exit.""")
+
+def validate_input() -> int:
+    """Validifies the input by first making sure it's a number and then checks
+    if it is between 1 and 4 inclusive."""
+
+    validity = False
+
+    print_menu()
+
     while validity == False:
         while True:    
             try:
@@ -92,32 +109,9 @@ def plain_text_encryptor(spacer, ALPHABET, final_message) -> str:
 
     print(add_spaces(final_message, 5))
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 def main():
 
-
-    spacer = 5
-    ALPHABET = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+    SPACER = 5
     playing = True
 
     while playing == True:
@@ -125,9 +119,9 @@ def main():
         print("""----------------------------------
 EasyCrypt Text Encryptor/Decryptor
 ----------------------------------""")
-        primary_input = input_validifyer()
+        primary_input = validate_input()
         if primary_input == 1:
-            plain_text_encryptor(spacer, ALPHABET, final_message)
+            plain_text_encryptor(SPACER, ALPHABET, final_message)
         #if primary_input == 2:
         
         #if primary_input == 3:
