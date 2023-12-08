@@ -18,6 +18,7 @@ ALPHABET_LENGTH = 26
 MIN_KEY_LENGTH = 1
 MAX_KEY_LENGTH = 500
 
+
 # Shubhra
 def print_menu():
     """Prints the program's menu with options ranging from 1-4."""
@@ -27,6 +28,7 @@ def print_menu():
 2. Decrypt ciphertext.
 3. Generate key.
 4. Exit.""")
+
 
 # Ayaan
 def validate_input(num1: int, num2: int, msg: str, err_msg1: str, err_msg2: str) -> int:
@@ -50,6 +52,7 @@ def validate_input(num1: int, num2: int, msg: str, err_msg1: str, err_msg2: str)
             valid = False
     return(primary_input) 
 
+
 # Shubhra
 def clean_text(text: str) -> str:
     """Return text with letters only and uppercased.
@@ -72,12 +75,14 @@ def clean_text(text: str) -> str:
 
     return(new_text)
 
+
 # Ayaan
 def random_char(num1: int, num2: int) -> str:
     """Generate a random character betweet ASCII values num1 and num2
     and return it."""
 
     return chr(random.randint(num1, num2))
+
 
 # Shubhra
 def add_filler(text: str, num: int) -> str:
@@ -96,6 +101,7 @@ def add_filler(text: str, num: int) -> str:
 
     return result
 
+
 # Ayaan
 def generate_key(num: int) -> str:
     """Generate and return a key with a length of num"""
@@ -105,6 +111,7 @@ def generate_key(num: int) -> str:
         result += random_char(ASCII_A, ASCII_Z)
 
     return result
+
 
 # Shubhra
 def add_spaces(text: str, spacer: int) -> str:
@@ -121,6 +128,7 @@ def add_spaces(text: str, spacer: int) -> str:
     for i in range(0, len(text), spacer):
         spaced_text += text[i:i+spacer] + ' '
     return spaced_text
+
 
 # Shubhra
 def encrypt_text(plain_text: str, key: str) -> str:
@@ -150,6 +158,7 @@ def encrypt_text(plain_text: str, key: str) -> str:
 
     # Add filler text to result before returning it spaced out
     return add_spaces(add_filler(result, 5), 5)
+
 
 # Ayaan
 def decrypt_text(cipher_text: str, key: str) -> str:
@@ -184,6 +193,7 @@ def decrypt_text(cipher_text: str, key: str) -> str:
 
     # Add spaces every 5 characters before returning
     return add_spaces(result, SPACER)
+
 
 # Ayaan
 def main():
@@ -251,6 +261,7 @@ EasyCrypt Text Encryptor/Decryptor
         if primary_input == 4:
             running = False
             break
+
 
 # Shubhra
 if __name__ == "__main__":
