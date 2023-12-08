@@ -11,6 +11,12 @@ __author__ = "Shubhra Chowdhury, Ayaan Adrito"
 import random
 
 ALPHABET = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+SPACER = 5
+ASCII_A = 65
+ASCII_Z = 90
+ALPHABET_LENGTH = 26
+MIN_KEY_LENGTH = 1
+MAX_KEY_LENGTH = 500
 
 # Shubhra
 def print_menu():
@@ -59,7 +65,7 @@ def clean_text(text: str) -> str:
     new_text = ""
 
     for char in text:
-        if 'A' <= char <= 'Z':
+        if "A" <= char <= "Z":
             new_text += char
         else:
             pass
@@ -86,7 +92,7 @@ def add_filler(text: str, num: int) -> str:
 
     result = text
     while len(result) % num != 0:
-        result += random_char(65, 90)
+        result += random_char(ASCII_A, ASCII_Z)
 
     return result
 
@@ -96,7 +102,7 @@ def generate_key(num: int) -> str:
 
     result = ""
     while len(result) <= num:
-        result += random_char(65, 90)
+        result += random_char(ASCII_A, ASCII_Z)
 
     return result
 
@@ -137,7 +143,7 @@ def encrypt_text(plain_text: str, key: str) -> str:
         # Calculate how many spaces to shift by
         shift = ALPHABET.index(key[key_counter]) + 1
         # Shift the current character to make the encrypted charcter
-        new_char = (ALPHABET.index(plain_text[i]) + shift) % 26
+        new_char = (ALPHABET.index(plain_text[i]) + shift) % ALPHABET_LENGTH
         result += ALPHABET[new_char]
 
         key_counter += 1
@@ -170,20 +176,19 @@ def decrypt_text(cipher_text: str, key: str) -> str:
 
         # Shift character sharting from Z if less than A
         if new_char < 0:
-            new_char += 26
+            new_char += ALPHABET_LENGTH
 
         result += ALPHABET[new_char]
 
         key_counter += 1
 
     # Add spaces every 5 characters before returning
-    return add_spaces(result, 5)
+    return add_spaces(result, SPACER)
 
 # Ayaan
 def main():
-    SPACER = 5
     running = True
-
+    
     print("""----------------------------------
 EasyCrypt Text Encryptor/Decryptor
 ----------------------------------""")
@@ -194,6 +199,7 @@ EasyCrypt Text Encryptor/Decryptor
         print_menu()
         primary_input = validate_input(1, 4, "> ", "invalid input", "Invalid choice. Try again.")
 
+        # Encryption
         if primary_input == 1:
             plain_text = input("\nPlease enter text to encrypt: ")
             plain_text = clean_text(plain_text)
@@ -205,7 +211,7 @@ EasyCrypt Text Encryptor/Decryptor
                 key = input("A key is any string of letters (1-500 chars): ")
                 key = clean_text(key)
 
-                if 1 <= len(key) <= 500:
+                if MIN_KEY_LENGTH <= len(key) <= MAX_KEY_LENGTH:
                     break
                 else:
                     print("invalid length")
@@ -213,6 +219,7 @@ EasyCrypt Text Encryptor/Decryptor
 
             final_message = encrypt_text(plain_text, key)
             print(f"Your message has been encrypted:\n{final_message}\n")
+        # Decryption
         if primary_input == 2:
             cipher_text = input("\nPlease enter text to decrypt: ")
             cipher_text = clean_text(cipher_text)
@@ -224,7 +231,7 @@ EasyCrypt Text Encryptor/Decryptor
                 key = input("A key is any string of letters (1-500 chars): ")
                 key = clean_text(key)
 
-                if 1 <= len(key) <= 500:
+                if MIN_KEY_LENGTH <= len(key) <= MAX_KEY_LENGTH:
                     break
                 else:
                     print("invalid length")
@@ -232,14 +239,15 @@ EasyCrypt Text Encryptor/Decryptor
 
             final_message = decrypt_text(cipher_text, key)
             print(f"Your message has been decrypted:\n{final_message}\n")
+        # Key generator
         if primary_input == 3:
             print("\nGenerate an encryption key comprised of random characters (max 500).")
 
             msg = "Enter the desired length of key: "
-            desired_length = validate_input(1, 500, msg, "invalid input", "invalid length")
+            desired_length = validate_input(MIN_KEY_LENGTH, MAX_KEY_LENGTH, msg, "invalid input", "invalid length")
             key = generate_key(desired_length)
             print(f"Your new encryption key: \n{key}\n")
-
+        # Quit program
         if primary_input == 4:
             running = False
             break
