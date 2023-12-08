@@ -130,7 +130,7 @@ def encrypt_text(plain_text: str, key: str) -> str:
         # Calculate how many spaces to shift by
         shift = ALPHABET.index(key[key_counter]) + 1
         # Shift the current character to make the encrypted charcter
-        new_char = (ALPHABET.index(plain_text[i]) + shift) % 25
+        new_char = (ALPHABET.index(plain_text[i]) + shift) % 26
         result += ALPHABET[new_char]
 
         key_counter += 1
