@@ -12,6 +12,7 @@ import random
 
 ALPHABET = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
 
+# Shubhra
 def print_menu():
     """Prints the program's menu with options ranging from 1-4."""
     
@@ -21,6 +22,7 @@ def print_menu():
 3. Generate key.
 4. Exit.""")
 
+# Ayaan
 def validate_input(num1: int, num2: int, msg: str, err_msg1: str, err_msg2: str) -> int:
     """Validate input and return an integer between num1 and num2.
     Print erorr message 1: err_msg1 if input is not and int.
@@ -42,6 +44,7 @@ def validate_input(num1: int, num2: int, msg: str, err_msg1: str, err_msg2: str)
             valid = False
     return(primary_input) 
 
+# Shubhra
 def clean_text(text: str) -> str:
     """Return text with letters only and uppercased.
     
@@ -56,20 +59,21 @@ def clean_text(text: str) -> str:
     new_text = ""
 
     for char in text:
-        # 65 and 90 are the ascii values for between A and Z
-        if 65 <= ord(char) <= 90:
+        if 'A' <= char <= 'Z':
             new_text += char
         else:
             pass
 
     return(new_text)
 
+# Ayaan
 def random_char(num1: int, num2: int) -> str:
     """Generate a random character betweet ASCII values num1 and num2
     and return it."""
 
     return chr(random.randint(num1, num2))
 
+# Shubhra
 def add_filler(text: str, num: int) -> str:
     """Add random letters to text until its length
     is divisible by num.
@@ -86,6 +90,7 @@ def add_filler(text: str, num: int) -> str:
 
     return result
 
+# Ayaan
 def generate_key(num: int) -> str:
     """Generate and return a key with a length of num"""
 
@@ -95,6 +100,7 @@ def generate_key(num: int) -> str:
 
     return result
 
+# Shubhra
 def add_spaces(text: str, spacer: int) -> str:
     """Add a space to text every spacer characters.
     
@@ -110,6 +116,7 @@ def add_spaces(text: str, spacer: int) -> str:
         spaced_text += text[i:i+spacer] + ' '
     return spaced_text
 
+# Shubhra
 def encrypt_text(plain_text: str, key: str) -> str:
     """Encrypt message plain_text using encoder key.
     
@@ -138,6 +145,7 @@ def encrypt_text(plain_text: str, key: str) -> str:
     # Add filler text to result before returning it spaced out
     return add_spaces(add_filler(result, 5), 5)
 
+# Ayaan
 def decrypt_text(cipher_text: str, key: str) -> str:
     """Decrypt_text message cipher_text using decoder key.
     
@@ -171,6 +179,7 @@ def decrypt_text(cipher_text: str, key: str) -> str:
     # Add spaces every 5 characters before returning
     return add_spaces(result, 5)
 
+# Ayaan
 def main():
     SPACER = 5
     running = True
@@ -235,6 +244,6 @@ EasyCrypt Text Encryptor/Decryptor
             running = False
             break
 
-
+# Shubhra
 if __name__ == "__main__":
     main()
