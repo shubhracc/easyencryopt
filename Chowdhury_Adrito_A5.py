@@ -70,8 +70,6 @@ def clean_text(text: str) -> str:
     for char in text:
         if "A" <= char <= "Z":
             new_text += char
-        else:
-            pass
 
     return(new_text)
 
